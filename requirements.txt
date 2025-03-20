@@ -1,10 +1,11 @@
 # Azure SDK and AI Services
 azure-identity                                # Azure authentication and credentials management
-azure-ai-projects==1.0.0b7                             # Azure AI project management
+azure-ai-projects==1.0.0b7                    # Azure AI project management
 azure-ai-inference[opentelemetry]             # Azure AI inference with OpenTelemetry support
-azure-ai-evaluation                           # Azure AI model evaluation tools
+azure-ai-inference[prompts]                   # Azure AI inference with Prompts support
 azure-ai-contentsafety                        # Azure content safety services
 azure-search-documents==11.6.0b4              # Azure Search Documents SDK
+azure-ai-evaluation[remote]                   # Azure AI model evaluation tools
 azure-ai-ml                                   # Azure Machine Learning SDK                
 
 # Telemetry and Monitoring

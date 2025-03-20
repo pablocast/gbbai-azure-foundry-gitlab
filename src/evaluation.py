@@ -5,7 +5,12 @@ from azure.ai.projects.models import (
     EvaluatorConfiguration,
     ConnectionType,
 )
-from azure.ai.evaluation import evaluate, F1ScoreEvaluator, RelevanceEvaluator, ViolenceEvaluator
+from azure.ai.evaluation import (
+    evaluate,
+    F1ScoreEvaluator,
+    RelevanceEvaluator,
+    ViolenceEvaluator,
+)
 from azure.identity import DefaultAzureCredential
 import json
 from pathlib import Path
@@ -16,8 +21,9 @@ from azure.ai.projects.models import (
     EvaluatorConfiguration,
     ConnectionType,
 )
+from azure.ai.evaluation._model_configurations import AzureOpenAIModelConfiguration
 from app import create_rag_agent, run_agent_query
-
+import logging
 
 def create_project_client():
     project_conn_str = os.environ.get("PROJECT_CONNECTION_STRING")
@@ -29,8 +35,8 @@ def create_project_client():
     return project_client
 
 
-def get_response(question: str) -> str:
-    
+def get_response(query: str) -> str:
+
     project_client = create_project_client()
 
     search_conn = project_client.connections.get_default(
@@ -41,34 +47,35 @@ def get_response(question: str) -> str:
     agent = create_rag_agent(
         model_name=os.environ["AZURE_OPENAI_GPT_MODEL_NAME"],
         index_name="courses",
-        search_conn=search_conn
+        search_conn=search_conn,
     )
 
-    answer = run_agent_query(agent=agent, question=question)
-
-    return answer
+    answer = run_agent_query(agent=agent, question=query)
+    logging.info(f"Answer: {answer}")
+    return dict(response=answer)
 
 
 def create_synthetic_eval_file(file_path):
     synthetic_eval_data = [
         {
-            "question": "Quais tópicos são abordados no Curso Profissional de Data Science?",
+            "query": "Quais tópicos são abordados no Curso Profissional de Data Science?",
             "context": "Curso Profissional de Data Science é um curso intensivo desenhado para profissionais que buscam aprofundar seus conhecimentos em análise de dados e aprendizado de máquina.",
             "ground_truth": "O curso aborda tópicos avançados como aprendizado de máquina, visualização de dados, análise estatística e aplicações práticas de dados.",
         },
         {
-            "question": "O curso de Desenvolvimento Web ensina tecnologias web modernas?",
+            "query": "O curso de Desenvolvimento Web ensina tecnologias web modernas?",
             "context": "Curso Profissional de Desenvolvimento Web foca no desenvolvimento web moderno em um ambiente profissional.",
             "ground_truth": "O curso enfatiza frameworks modernos, técnicas de design responsivo e as práticas atuais de desenvolvimento web.",
         },
         {
-            "question": "O curso de Cibersegurança inclui estratégias de prevenção contra ameaças?",
+            "query": "O curso de Cibersegurança inclui estratégias de prevenção contra ameaças?",
             "context": "Curso Profissional de Cibersegurança oferece um currículo abrangente para dominar a segurança da informação e métodos de prevenção contra ameaças.",
             "ground_truth": "Sim, o curso inclui módulos detalhados sobre detecção de ameaças, prevenção e melhores práticas de cibersegurança.",
         },
         {
-            "question": "Quais habilidades de gestão são desenvolvidas no curso de Gestão de Projetos?",
+            "query": "Quais habilidades de gestão são desenvolvidas no curso de Gestão de Projetos?",
             "context": "Curso Profissional de Gestão de Projetos é desenhado para equipar profissionais com habilidades eficazes de gestão de projetos para ambientes corporativos.",
+            "ground_truth": "O curso desenvolve habilidades em planejamento, execução, monitoramento e fechamento de projetos, além de técnicas de liderança.",
         },
     ]
 
@@ -88,29 +95,37 @@ def upload_eval_data(project_client, data_path):
 
 
 def create_evaluation(project_client, uploaded_data_path):
-    
-    evaluator_model = {
-        "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
-        "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME"),
-        "api_version": "2024-12-01-preview",
-    }
+
+    model_config = AzureOpenAIModelConfiguration(
+        azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+        api_version="2024-04-01-preview",
+        azure_deployment=os.environ["AZURE_OPENAI_GPT_MODEL_NAME"],
+    )
+
+    f1_score = F1ScoreEvaluator()
+    relevance = RelevanceEvaluator(model_config)
+    violence = ViolenceEvaluator(
+        credential=DefaultAzureCredential(), azure_ai_project=project_client.scope
+    )
 
     evaluation = evaluate(
         target=get_response,
-        display_name="Remote Evaluation",
+        evaluation_name="evaluate_rag_agent",
         description="Evaluating dataset for correctness.",
         data=uploaded_data_path,
         evaluators={
-            "f1_score": EvaluatorConfiguration(id=F1ScoreEvaluator.id),
-            "relevance": EvaluatorConfiguration(
-                id=RelevanceEvaluator.id, init_params={"model_config": evaluator_model}
-            ),
-            "violence": EvaluatorConfiguration(
-                id=ViolenceEvaluator.id,
-                init_params={"azure_ai_project": project_client.scope},
-            ),
+            "f1_score": f1_score,
+            "relevance": relevance,
+            "violence": violence,
         },
-        azure_ai_project=project_client.scope
+        evaluator_config={
+            "default": {
+                "query": {"${data.query}"},
+                "context": {"${target.context}"},
+                "ground_truth": "${data.ground_truth}",
+            }
+        },
+        azure_ai_project=project_client.scope,
     )
     return evaluation
 
@@ -122,7 +137,6 @@ def main():
     uploaded_data_id = upload_eval_data(project_client, eval_data_path)
     evaluation = create_evaluation(project_client, eval_data_path)
     print("✅ Evaluation object created.")
-
 
 if __name__ == "__main__":
     main()

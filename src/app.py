@@ -97,8 +97,7 @@ def run_agent_query(agent: str, question: str):
             for c in m.content:
                 if hasattr(c, "text"):
                     print(c.text.value)
-            break
-
+            return m.content[0].text.value
 
 if __name__ == "__main__":
     # Create the RAG agent
