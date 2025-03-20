@@ -1,6 +1,12 @@
+
+
 test-job1:
   stage: test
   image: python:3.11-slim
+  before_script:
+    - npm i -g firebase-tools
+    - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
+    - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
   script:
     - echo "This job tests something"
     # GitLab automatically checks out the repository.
