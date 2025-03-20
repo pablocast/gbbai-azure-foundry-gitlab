@@ -1,0 +1,19 @@
+test-job1:
+  stage: test
+  script:
+    - echo "This job tests something"
+    # GitLab automatically checks out the repository.
+    - echo "Installing az ml extension..."
+    - az extension add -n ml -y
+    - echo "Performing Azure login"
+    # Write the JSON credentials (assumed to be stored in an environment variable named AZURE_CREDENTIALS)
+    - echo "$AZURE_CREDENTIALS" > azure_creds.json
+    # Use jq to extract values; ensure jq is installed on the runner; alternatively, adjust the command as needed.
+    - az login --service-principal --username $(jq -r '.clientId' azure_creds.json) --password $(jq -r '.clientSecret' azure_creds.json) --tenant $(jq -r '.tenantId' azure_creds.json)
+    - echo "Listing current directory"
+    - ls
+    - echo "Installing ai foundry dependencies"
+    - pip install -r requirements.txt
+    - echo "Running AI Foundry evaluations"
+    - python src/evaluation.py
+  
