@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "modelsConfig": {
+            "value": [
+                {
+                    "name": "gpt-4o",
+                    "publisher": "OpenAI",
+                    "version": "2024-11-20",
+                    "sku": "GlobalStandard",
+                    "capacity": 30
+                },
+                {
+                    "name": "text-embedding-ada-002",
+                    "publisher": "OpenAI",
+                    "version": "2",
+                    "sku": "Standard",
+                    "capacity": 30
+                }
+            ]
+        }
+    }
+}
