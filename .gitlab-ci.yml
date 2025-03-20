@@ -1,16 +1,22 @@
+auth:
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
+  script:
+    - az login --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID --federated-token $GITLAB_OIDC_TOKEN
+    - az account show
+
 test-job1:
   stage: test
   image: mcr.microsoft.com/azure-cli
   before_script:
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
+    - az extension add -n ml -y
   script:
     - echo "This job tests something"
     - echo "Installing Azure CLI extensions"
     - echo "Installing az ml extension..."
-    - az extension add -n ml -y
-    - echo "Performing Azure login"
-    - az login --tenant $AZURE_TENANT -u $AZURE_APP_ID -p $AZURE_PASSWORD 
     - echo "Listing current directory"
     - ls
     # - echo "Installing ai foundry dependencies"
