@@ -5,8 +5,8 @@ test-job1:
     - echo "This job tests something"
     # GitLab automatically checks out the repository.
     - echo "Installing az CLI"
-    - sudo apt-get update
-    - sudo apt-get install azure-cli
+    - apt-get update
+    - apt-get install azure-cli
     - echo "Installing jq"
     - apt-get install -y jq
     - echo "Installing Python 3.11"
