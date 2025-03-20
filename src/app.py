@@ -6,7 +6,7 @@ from azure.identity import DefaultAzureCredential  # For Azure authentication
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import AzureAISearchTool, ConnectionType
 
-model_name = os.environ["AZURE_OPENAI_MODEL"]
+model_name = os.environ["AZURE_OPENAI_GPT_MODEL_NAME"]
 index_name = "courses"
 
 # Project connection string
