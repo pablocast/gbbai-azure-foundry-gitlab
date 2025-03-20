@@ -1,18 +1,9 @@
 test-job1:
   stage: test
-  image: ubuntu:latest
+  image: mcr.microsoft.com/azure-cli
   script:
     - echo "This job tests something"
     # GitLab automatically checks out the repository.
-    - echo "Installing az CLI"
-    - apt-get update
-    - apt-get install azure-cli
-    - echo "Installing jq"
-    - apt-get install -y jq
-    - echo "Installing Python 3.11"
-    - apt-get install -y python3.11
-    - echo "Installing pip"
-    - apt-get install -y python3-pip
     - echo "Installing Azure CLI extensions"
     - echo "Installing az ml extension..."
     - az extension add -n ml -y
@@ -24,7 +15,7 @@ test-job1:
     - echo "Listing current directory"
     - ls
     - echo "Installing ai foundry dependencies"
-    - pip3.11 install -r requirements.txt
+    - pip install -r requirements.txt
     - echo "Running AI Foundry evaluations"
-    - python3.11 src/evaluation.py
+    - python src/evaluation.py
   
