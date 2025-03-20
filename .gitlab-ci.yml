@@ -10,7 +10,7 @@ test-job1:
     - echo "Installing az ml extension..."
     - az extension add -n ml -y
     - echo "Performing Azure login"
-    - az login --tenant -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
+    - az login --tenant $AZURE_TENANT -u $AZURE_APP_ID -p $AZURE_PASSWORD 
     - echo "Listing current directory"
     - ls
     # - echo "Installing ai foundry dependencies"
