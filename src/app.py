@@ -1,31 +1,33 @@
 import os
-from azure.search.documents import SearchClient  # For document operations (upload/search)
+from azure.search.documents import (
+    SearchClient,
+)  # For document operations (upload/search)
 from azure.identity import DefaultAzureCredential  # For Azure authentication
-from azure.ai.projects import AIProjectClient 
+from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import AzureAISearchTool, ConnectionType
 
 model_name = os.environ["AZURE_OPENAI_MODEL"]
-index_name = 'courses'
+index_name = "courses"
 
 # Project connection string
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
 )
 
-# Search connection 
+# Search connection
 search_conn = project_client.connections.get_default(
     # Specify we want an Azure AI Search connection type
     connection_type=ConnectionType.AZURE_AI_SEARCH,
     # include_credentials=True means we'll get the full connection info including auth keys
-    include_credentials=True
+    include_credentials=True,
 )
 
-def create_rag_agent(model_name: str, index_name:str, search_conn: ConnectionType):
+
+def create_rag_agent(model_name: str, index_name: str, search_conn: ConnectionType):
 
     ai_search_tool = AzureAISearchTool(
-        index_connection_id=search_conn.id,
-        index_name=index_name
+        index_connection_id=search_conn.id, index_name=index_name
     )
     # Create an AI agent that can understand natural language and search our index
     # - The agent uses our Azure OpenAI model for natural language understanding
@@ -52,9 +54,10 @@ def create_rag_agent(model_name: str, index_name:str, search_conn: ConnectionTyp
         tool_resources=ai_search_tool.resources,
         headers={"x-ms-enable-preview": "true"},  # Habilitar recursos de preview
     )
-    print(f"🎉 Created agent, ID: {agent.id}")  
+    print(f"🎉 Created agent, ID: {agent.id}")
 
-    return agent 
+    return agent
+
 
 def run_agent_query(agent: str, question: str):
     # Step 1: Create a new conversation thread
@@ -66,9 +69,7 @@ def run_agent_query(agent: str, question: str):
     # Step 2: Add the user's question as a message in the thread
     # Messages have roles ("user" or "assistant") and content (the actual text)
     message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role="user",
-        content=question
+        thread_id=thread.id, role="user", content=question
     )
     print(f"💬 Created user message, ID: {message.id}")
 
@@ -78,8 +79,7 @@ def run_agent_query(agent: str, question: str):
     # - Use its AI Search tool to find relevant products
     # - Generate a helpful response
     run = project_client.agents.create_and_process_run(
-        thread_id=thread.id,
-        assistant_id=agent.id
+        thread_id=thread.id, assistant_id=agent.id
     )
     print(f"🤖 Agent run status: {run.status}")
 

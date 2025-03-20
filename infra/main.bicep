@@ -370,7 +370,7 @@ var projectEndoint = replace(replace(project.properties.discoveryUrl, 'https://'
 output PROJECT_CONNECTION_STRING string = '${projectEndoint};${subscription().subscriptionId};${resourceGroup().name};${project.name}'
 output AZURE_SEARCH_ENDPOINT string = 'https://${searchService.name}.search.windows.net'
 output AZURE_OPENAI_ENDPOINT string = 'https://${account.name}.openai.azure.com'
-output AZURE_OPENAI_MODEL string = modelDeployment[0].name
+output AZURE_OPENAI_GPT_MODEL_NAME string = modelDeployment[0].name
 output AZURE_OPENAI_EMBEDDING_MODEL_NAME string = modelDeployment[1].name
 output AZURE_OPENAI_EMBEDDING_MODEL_DIMENSIONS int = embedingsDimension
 

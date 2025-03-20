@@ -1,3 +1,15 @@
 name: azure-ai-agent-service
 metadata:
   template: azure-ai-agent-service
+hooks:
+     postup:
+      windows:
+        shell: pwsh
+        run: ./infra/scripts/write_env.ps1;
+        interactive: true
+        continueOnError: false
+      posix:
+        shell: sh
+        run: ./infra/scripts/write_env.sh;
+        interactive: true
+        continueOnError: false
