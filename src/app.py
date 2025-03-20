@@ -22,13 +22,10 @@ project_client = AIProjectClient.from_connection_string(
 search_conn = project_client.connections.get_default(
     # Specify we want an Azure AI Search connection type
     connection_type=ConnectionType.AZURE_AI_SEARCH,
-    # include_credentials=True means we'll get the full connection info including auth keys
-    include_credentials=True,
 )
 
 
-def create_rag_agent(model_name: str, index_name: str, search_conn: ConnectionType):
-
+def create_rag_agent(model_name: str, index_name: str, search_conn):
     ai_search_tool = AzureAISearchTool(
         index_connection_id=search_conn.id, index_name=index_name
     )
