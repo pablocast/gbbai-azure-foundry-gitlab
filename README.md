@@ -26,8 +26,7 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
       The deployment creates multiple Azure resources and runs multiple jobs. It takes several minutes to complete. The deployment is complete when you get a command line notification stating "SUCCESS: Your up workflow to provision and deploy to Azure completed."
 
 3. **Indexing Documents**
-   - Open each [notebook's folder](2-notebooks/) and execute the notebook
-
+   - Run the  [indexing-aisearch notebook](notebooks/indexing-aisearch.ipynb) to create an index for the agent
 
 
 4. **Trigger an evaluation pipeline from GitLab**
