@@ -1,7 +1,6 @@
 test-job1:
   stage: test
-  tags:
-    - linux
+  image: ubuntu:latest
   script:
     - echo "This job tests something"
     # GitLab automatically checks out the repository.
