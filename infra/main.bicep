@@ -255,6 +255,7 @@ resource connection 'Microsoft.MachineLearningServices/workspaces/connections@20
 
 resource hub_connection_azureai_search 'Microsoft.MachineLearningServices/workspaces/connections@2024-04-01-preview' = {
   name: searchService.name
+  parent: hub
   properties: {
     category: 'CognitiveSearch'
     target: 'https://${searchService.name}.search.windows.net'
