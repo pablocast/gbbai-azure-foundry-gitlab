@@ -1,6 +1,7 @@
 test-job1:
   stage: test
   image: mcr.microsoft.com/azure-cli
+  before_script:
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
   script:
