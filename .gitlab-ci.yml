@@ -1,6 +1,6 @@
 test-job1:
   stage: test
-  image: mcr.microsoft.com/azure-cli
+  image: python:3.11-slim
   script:
     - echo "This job tests something"
     # GitLab automatically checks out the repository.
