@@ -1,10 +1,13 @@
 // ------------------
 //    PARAMETERS
 // ------------------
+@description('The principal ID of the user or service principal that will be assigned the role.')
+param principalId string
+
 
 // Typically, parameters would be decorated with appropriate metadata and attributes, but as they are very repetetive in these labs we omit them for brevity.
 @description('Configuration array for Inference Models')
-param modelsConfig array = []
+param modelsConfig array 
 
 @description('The tags for the resources')
 param tagValues object = {
@@ -41,6 +44,9 @@ param searchServiceReplicaCount int = 1
   12
 ])
 param searchServicePartitionCount int = 1
+
+param embedingsDimension int 
+
 
 // ------------------
 //    VARIABLES
@@ -150,13 +156,23 @@ resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
   name: 'vault-${resourceSuffix}'
   location: location
   properties: {
-    tenantId: subscription().tenantId
-    sku: {
-      name: 'standard'
-      family: 'A'
-    }
+    createMode: 'default'
+    enabledForDeployment: false
+    enabledForDiskEncryption: false
+    enabledForTemplateDeployment: false
+    enableSoftDelete: true
     enableRbacAuthorization: true
-    accessPolicies: []
+    enablePurgeProtection: true
+    networkAcls: {
+      bypass: 'AzureServices'
+      defaultAction: 'Deny'
+    }
+    sku: {
+      family: 'A'
+      name: 'standard'
+    }
+    softDeleteRetentionInDays: 7
+    tenantId: subscription().tenantId
   }
   tags: tagValues
 }
@@ -328,8 +344,33 @@ resource cognitiveServicesRoleSearch 'Microsoft.Authorization/roleAssignments@20
   }
 }
 
+// User
+resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = {
+  name: guid(subscription().id, resourceGroup().id, searchIndexDataContributorRole.id)
+  scope: resourceGroup()
+  properties: {
+    principalType: 'User'
+    principalId: principalId
+    roleDefinitionId: searchIndexDataContributorRole.id
+  }
+}
 
-output projectName string = project.name
-output projectId string = project.id
+resource cognitiveServicesRoleUser 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = {
+    name: guid(subscription().id, resourceGroup().id, cognitiveServicesOpenAIUserRole.id)
+    scope: resourceGroup()
+    properties: {
+      principalType: 'User'
+      principalId: principalId
+      roleDefinitionId: cognitiveServicesOpenAIUserRole.id
+    }
+  }
+
+// Outputs
 var projectEndoint = replace(replace(project.properties.discoveryUrl, 'https://', ''), '/discovery', '')
-output projectConnectionString string = '${projectEndoint};${subscription().subscriptionId};${resourceGroup().name};${project.name}'
+output PROJECT_CONNECTION_STRING string = '${projectEndoint};${subscription().subscriptionId};${resourceGroup().name};${project.name}'
+output AZURE_SEARCH_ENDPOINT string = 'https://${searchService.name}.search.windows.net'
+output AZURE_OPENAI_ENDPOINT string = 'https://${account.name}.openai.azure.com'
+output AZURE_OPENAI_MODEL string = modelDeployment[0].name
+output AZURE_OPENAI_EMBEDDING_MODEL_NAME string = modelDeployment[1].name
+output AZURE_OPENAI_EMBEDDING_MODEL_DIMENSIONS int = embedingsDimension
+

@@ -1,6 +1,6 @@
-# <img src="./utils/media/ai_foundry.png" alt="Azure Foundry" style="width:80px;height:30px;"/> Azure AI Foundry Workshop Notebooks
+# <img src="./utils/media/ai_foundry.png" alt="Azure Foundry" style="width:80px;height:30px;"/> Gitlab Integation with Azure AI Foundry
 
-This directory contains Jupyter notebooks for hands-on exercises with Azure AI Foundry.
+This directory exemplifies the integration between Gitlab and Azure AI Foundry
 
 ## Instructions
 
