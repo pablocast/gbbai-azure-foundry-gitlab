@@ -54,26 +54,21 @@ def create_synthetic_eval_file(file_path):
         {
             "query": "Quais tópicos são abordados no Curso Profissional de Data Science?",
             "context": "Curso Profissional de Data Science é um curso intensivo desenhado para profissionais que buscam aprofundar seus conhecimentos em análise de dados e aprendizado de máquina.",
-            "response": "Ele cobre apenas manipulação básica de dados.",
             "ground_truth": "O curso aborda tópicos avançados como aprendizado de máquina, visualização de dados, análise estatística e aplicações práticas de dados.",
         },
         {
             "query": "O curso de Desenvolvimento Web ensina tecnologias web modernas?",
             "context": "Curso Profissional de Desenvolvimento Web foca no desenvolvimento web moderno em um ambiente profissional.",
-            "response": "Ele utiliza tecnologias web desatualizadas.",
             "ground_truth": "O curso enfatiza frameworks modernos, técnicas de design responsivo e as práticas atuais de desenvolvimento web.",
         },
         {
             "query": "O curso de Cibersegurança inclui estratégias de prevenção contra ameaças?",
             "context": "Curso Profissional de Cibersegurança oferece um currículo abrangente para dominar a segurança da informação e métodos de prevenção contra ameaças.",
-            "response": "Ele exclui estratégias de prevenção contra ameaças.",
             "ground_truth": "Sim, o curso inclui módulos detalhados sobre detecção de ameaças, prevenção e melhores práticas de cibersegurança.",
         },
         {
             "query": "Quais habilidades de gestão são desenvolvidas no curso de Gestão de Projetos?",
             "context": "Curso Profissional de Gestão de Projetos é desenhado para equipar profissionais com habilidades eficazes de gestão de projetos para ambientes corporativos.",
-            "response": "Ele ensina apenas técnicas de agendamento.",
-            "ground_truth": "O curso desenvolve uma ampla gama de habilidades de gestão, incluindo planejamento, gestão de riscos, liderança e estratégias de execução de projetos.",
         },
     ]
 
@@ -120,7 +115,7 @@ def create_evaluation(project_client, uploaded_data_id):
 
 
 def main():
-    eval_data_path = Path("../data/eval_data.jsonl")
+    eval_data_path = Path("./data/eval_data.jsonl")
     create_synthetic_eval_file(eval_data_path)
     project_client = create_project_client()
     uploaded_data_id = upload_eval_data(project_client, eval_data_path)

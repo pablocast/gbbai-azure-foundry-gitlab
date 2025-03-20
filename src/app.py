@@ -5,6 +5,9 @@ from azure.search.documents import (
 from azure.identity import DefaultAzureCredential  # For Azure authentication
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import AzureAISearchTool, ConnectionType
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 model_name = os.environ["AZURE_OPENAI_GPT_MODEL_NAME"]
 index_name = "courses"
@@ -38,14 +41,14 @@ def create_rag_agent(model_name: str, index_name: str, search_conn: ConnectionTy
         model=model_name,
         name="agent-search",
         instructions="""
-        Você é VirtualSena com acesso às buscas no Azure Search, um assessor virtual amigável especializado em recomendar cursos virtuais.
+        Você é Virtual com acesso às buscas no Azure Search, um assessor virtual amigável especializado em recomendar cursos virtuais.
         **Sempre use o Azure Search para recomendar cursos**
         **Não use seu conhecimento prévio.**
         Lembre sempre os usuários: Não sou um assessor acadêmico oficial.
         Forneça recomendações claras de cursos, explique brevemente cada um e incentive os usuários a explorar oportunidades de aprendizagem virtual.
         
         Sempre:
-        1. Forneça um aviso de isenção, indicando que você não é um profissional do SENA.
+        1. Forneça um aviso de isenção, indicando que você não é um profissional academico.
         2. Incentive a consulta com um profissional.
         3. Sempre use o Azure Search.
         4. Ofereça respostas breves e úteis.
@@ -79,7 +82,7 @@ def run_agent_query(agent: str, question: str):
     # - Use its AI Search tool to find relevant products
     # - Generate a helpful response
     run = project_client.agents.create_and_process_run(
-        thread_id=thread.id, assistant_id=agent.id
+        thread_id=thread.id, agent_id=agent.id
     )
     print(f"🤖 Agent run status: {run.status}")
 
@@ -105,4 +108,4 @@ if __name__ == "__main__":
     agent = create_rag_agent(model_name, index_name, search_conn)
 
     # Run a query against the RAG agent
-    run_agent_query(agent, "Quais cursos de IA estão disponíveis?")
+    run_agent_query(agent, "Tem curso Profissional de Data Science?")
