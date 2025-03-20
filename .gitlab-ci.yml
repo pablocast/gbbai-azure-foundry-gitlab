@@ -8,10 +8,7 @@ test-job1:
     - echo "Installing az ml extension..."
     - az extension add -n ml -y
     - echo "Performing Azure login"
-    # Write the JSON credentials (assumed to be stored in an environment variable named AZURE_CREDENTIALS)
-    - echo "$AZURE_CREDENTIALS" > azure_creds.json
-    # Use jq to extract values; ensure jq is installed on the runner; alternatively, adjust the command as needed.
-    - az login --service-principal --username $(jq -r '.clientId' azure_creds.json) --password $(jq -r '.clientSecret' azure_creds.json) --tenant $(jq -r '.tenantId' azure_creds.json)
+    - az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
     - echo "Listing current directory"
     - ls
     - echo "Installing ai foundry dependencies"
