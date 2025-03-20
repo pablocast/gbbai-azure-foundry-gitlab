@@ -22,8 +22,8 @@ test-job1:
     - echo "Installing az ml extension..."
     - echo "Listing current directory"
     - ls
-    # - echo "Installing ai foundry dependencies"
-    # - pip install -r requirements.txt
-    # - echo "Running AI Foundry evaluations"
-    # - python src/evaluation.py
+    - echo "Installing ai foundry dependencies"
+    - pip install -r requirements.txt
+    - echo "Running AI Foundry evaluations"
+    - python src/evaluation.py
   
