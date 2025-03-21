@@ -6,8 +6,8 @@ auth:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
   script:
-    - az login --tenant $AZURE_TENANT
-    - az account show
+    - az login
+    - az account set --subscription $AZURE_SUBSCRIPTION_ID
     - az extension add -n ml -y
 
 test-job1:
@@ -16,8 +16,6 @@ test-job1:
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
-    - apt-get update
-    - apt-get install -y python3.11
   script:
     - echo "This job tests something"
     - echo "Installing Azure CLI extensions"
