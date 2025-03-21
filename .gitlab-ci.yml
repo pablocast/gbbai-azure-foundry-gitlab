@@ -6,7 +6,7 @@ auth:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
   script:
-    - az login --tenant $AZURE_TENANT --federated-token $GITLAB_OIDC_TOKEN
+    - az login --tenant $AZURE_TENANT
     - az account show
 
 test-job1:
