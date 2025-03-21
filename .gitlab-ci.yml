@@ -6,7 +6,7 @@ auth:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
   script:
-    - az login
+    - az login --allow-no-subscriptions
     - az account set --subscription $AZURE_SUBSCRIPTION_ID
     - az extension add -n ml -y
 
