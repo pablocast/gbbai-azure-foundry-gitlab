@@ -8,14 +8,16 @@ auth:
   script:
     - az login --tenant $AZURE_TENANT
     - az account show
+    - az extension add -n ml -y
 
 test-job1:
   stage: test
-  image: mcr.microsoft.com/azure-cli
+  image: python:3.11-slim
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
-    - az extension add -n ml -y
+    - apt-get update
+    - apt-get install -y python3.11
   script:
     - echo "This job tests something"
     - echo "Installing Azure CLI extensions"
