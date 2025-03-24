@@ -11,6 +11,7 @@ test-job1:
     - echo "Installing Azure CLI extensions"
     - echo "Installing az ml extension..."
     - echo "Listing current directory"
+    - echo $AZURE_OPENAI_API_KEY
     - ls
     - echo "Running evaluation"
     - pf run create -f src/evaluation_flow/run.yml --stream
