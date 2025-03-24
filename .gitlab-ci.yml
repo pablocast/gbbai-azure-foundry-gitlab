@@ -4,15 +4,34 @@ test-job1:
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
+    - echo AZURE_OPENAI_API_KEY=$AZURE_OPENAI_API_KEY >> .env
+    - echo AZURE_RESOURCE_GROUP=$AZURE_RESOURCE_GROUP >> .env
+    - echo AZURE_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID >> .env
+    - echo AZURE_AML_WORKSPACE=$AZURE_AML_WORKSPACE >> .env
     - python3 -m venv venv
     - . venv/bin/activate
-    - pip install azure-identity azure-ai-projects promptflow azure-ai-evaluation
-    - az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
+    - pip install azure-identity azure-ai-projects promptflow azure-ai-evaluation promptflow-azure
+    # - az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
   script:
     - echo "This job tests something"
     - echo "Installing az ml extension..."
     - echo "Listing current directory"
     - ls
-    - echo "Running evaluation"
-    - pf run create -f src/evaluation_flow/run.yml --stream
-   
+    - |
+      echo "Running Flow"
+      pfazure run create -f src/flow/run.yml \
+        --subscription $AZURE_SUBSCRIPTION_ID \
+        -g $AZURE_RESOURCE_GROUP \
+        -w $AZURE_AML_WORKSPACE \
+        --stream 2>&1 | tee src/llmops-helper/run_info.txt || true
+      cat src/llmops-helper/run_info.txt
+      echo "RUN_NAME=$(python src/llmops-helper/parse_run_output.py run_info.txt)" >> .env
+    - |
+      echo "Running evaluation"
+      pfazure run create -f src/evaluation_flow/run_evaluation.yml \
+        --run $RUN_NAME \
+        --subscription $AZURE_SUBSCRIPTION_ID \
+        -g $AZURE_RESOURCE_GROUP \
+        -w $AZURE_AML_WORKSPACE  \
+        --stream > src/llmops-helper/eval_info.txt
+      echo "EVAL_RUN_NAME=$(python src/llmops-helper/parse_run_output.py eval_info.txt)" >> .env
