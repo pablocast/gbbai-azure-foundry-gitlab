@@ -6,9 +6,5 @@ column_mapping:
   answer: ${data.response}
   question: ${data.query}
   context: ${data.context}
-# define cloud resource
-environment_variables:
-  AZURE_OPENAI_GPT_MODEL_NAME: gpt-4o
-  AZURE_OPENAI_ENDPOINT: https://aiservices-y46hq5abdyglk.openai.azure.com/
 resources:
   compute: pfcompute
