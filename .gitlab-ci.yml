@@ -12,5 +12,5 @@ test-job1:
     - echo "Listing current directory"
     - ls
     - echo "Running evaluation"
-    - pf run create --flow scr/evaluation_flow/run.yml --stream
+    - pf run create --flow src/evaluation_flow/run.yml --stream
    
