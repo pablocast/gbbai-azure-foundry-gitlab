@@ -19,19 +19,10 @@ test-job1:
     - ls
     - |
       echo "Running Flow"
-      pfazure run create -f src/flow/run.yml \
-        --subscription $AZURE_SUBSCRIPTION_ID \
-        -g $AZURE_RESOURCE_GROUP \
-        -w $AZURE_AML_WORKSPACE \
-        --stream 2>&1 | tee src/llmops-helper/run_info.txt || true
+      pfazure run create -f src/flow/run.yml --subscription $AZURE_SUBSCRIPTION_ID -g $AZURE_RESOURCE_GROUP -w $AZURE_AML_WORKSPACE --stream 2>&1 | tee src/llmops-helper/run_info.txt || true
       cat src/llmops-helper/run_info.txt
       echo "RUN_NAME=$(python src/llmops-helper/parse_run_output.py run_info.txt)" >> .env
     - |
       echo "Running evaluation"
-      pfazure run create -f src/evaluation_flow/run_evaluation.yml \
-        --run $RUN_NAME \
-        --subscription $AZURE_SUBSCRIPTION_ID \
-        -g $AZURE_RESOURCE_GROUP \
-        -w $AZURE_AML_WORKSPACE  \
-        --stream > src/llmops-helper/eval_info.txt
+      pfazure run create -f src/evaluation_flow/run_evaluation.yml --run $RUN_NAME --subscription $AZURE_SUBSCRIPTION_ID -g $AZURE_RESOURCE_GROUP -w $AZURE_AML_WORKSPACE --stream > src/llmops-helper/eval_info.txt
       echo "EVAL_RUN_NAME=$(python src/llmops-helper/parse_run_output.py eval_info.txt)" >> .env

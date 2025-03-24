@@ -1,0 +1,55 @@
+[32mUploading eval_data.jsonl[32m (< 1 MB): 0.00B [00:00, ?B/s][32mUploading eval_data.jsonl[32m (< 1 MB): 100%|##########| 3.83k/3.83k [00:00<00:00, 12.7kB/s][32mUploading eval_data.jsonl[32m (< 1 MB): 100%|##########| 3.83k/3.83k [00:00<00:00, 12.6kB/s]
+[39m
+
+🎉 Created agent, ID: asst_WEuIyG3tciuCwDBA9tccdFZQ
+[32mUploading flow (0.01 MBs):   0%|          | 0/6981 [00:00<?, ?it/s][32mUploading flow (0.01 MBs):   3%|3         | 225/6981 [00:00<00:08, 756.84it/s][32mUploading flow (0.01 MBs):  29%|##9       | 2038/6981 [00:00<00:01, 3017.12it/s][32mUploading flow (0.01 MBs): 100%|##########| 6981/6981 [00:00<00:00, 11303.62it/s][32mUploading flow (0.01 MBs): 100%|##########| 6981/6981 [00:00<00:00, 8267.03it/s] 
+[39m
+
+[2025-03-24 20:36:57 -0300][promptflow][WARNING] - You're using compute session, if it's first time you're using it, it may take a while to build session and you may see 'NotStarted' status for a while. 
+[2025-03-24 20:36:57 -0300][promptflow][WARNING] - The trace Cosmos DB for current workspace/project is not ready yet, your traces might not be logged and stored properly.
+To enable it, please run `pf config set trace.destination=azureml://subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-or-project-name>`, prompt flow will help to get everything ready.
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Scripts\pfazure.exe\__main__.py", line 7, in <module>
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 134, in main
+    entry(command_args)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 115, in entry
+    cli_exception_and_telemetry_handler(run_command, activity_name, custom_dimensions)(args)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_cli\_utils.py", line 276, in wrapper
+    raise e
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_cli\_utils.py", line 264, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 60, in run_command
+    raise ex
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 48, in run_command
+    dispatch_run_commands(args)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\_run.py", line 410, in dispatch_run_commands
+    create_run(
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_cli\_pf\_run.py", line 659, in create_run
+    run = create_func(run=run_obj, stream=stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_sdk\_telemetry\activity.py", line 265, in wrapper
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\operations\_run_operations.py", line 187, in create_or_update
+    self.stream(run=run.name)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_sdk\_telemetry\activity.py", line 265, in wrapper
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\operations\_run_operations.py", line 641, in stream
+    available_logs = self._get_log(flow_run_id=run.name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\operations\_run_operations.py", line 543, in _get_log
+    return self._service_caller.caller.bulk_runs.get_flow_run_log_content(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\azure\core\tracing\decorator.py", line 116, in wrapper_use_tracer
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_restclient\flow\operations\_bulk_runs_operations.py", line 973, in get_flow_run_log_content
+    raise HttpResponseError(response=response, model=error)
+azure.core.exceptions.HttpResponseError: (UserError) Value cannot be null. (Parameter 'bytes')
+Code: UserError
+Message: Value cannot be null. (Parameter 'bytes')
