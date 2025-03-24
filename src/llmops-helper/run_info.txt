@@ -1,12 +1,6 @@
-[32mUploading eval_data.jsonl[32m (< 1 MB): 0.00B [00:00, ?B/s][32mUploading eval_data.jsonl[32m (< 1 MB): 100%|##########| 3.83k/3.83k [00:00<00:00, 12.7kB/s][32mUploading eval_data.jsonl[32m (< 1 MB): 100%|##########| 3.83k/3.83k [00:00<00:00, 12.6kB/s]
-[39m
-
-🎉 Created agent, ID: asst_WEuIyG3tciuCwDBA9tccdFZQ
-[32mUploading flow (0.01 MBs):   0%|          | 0/6981 [00:00<?, ?it/s][32mUploading flow (0.01 MBs):   3%|3         | 225/6981 [00:00<00:08, 756.84it/s][32mUploading flow (0.01 MBs):  29%|##9       | 2038/6981 [00:00<00:01, 3017.12it/s][32mUploading flow (0.01 MBs): 100%|##########| 6981/6981 [00:00<00:00, 11303.62it/s][32mUploading flow (0.01 MBs): 100%|##########| 6981/6981 [00:00<00:00, 8267.03it/s] 
-[39m
-
-[2025-03-24 20:36:57 -0300][promptflow][WARNING] - You're using compute session, if it's first time you're using it, it may take a while to build session and you may see 'NotStarted' status for a while. 
-[2025-03-24 20:36:57 -0300][promptflow][WARNING] - The trace Cosmos DB for current workspace/project is not ready yet, your traces might not be logged and stored properly.
+🎉 Created agent, ID: asst_H3obW6Yn7zilJlzGiAB3SYQj
+[2025-03-24 20:53:01 -0300][promptflow][WARNING] - You're using compute session, if it's first time you're using it, it may take a while to build session and you may see 'NotStarted' status for a while. 
+[2025-03-24 20:53:01 -0300][promptflow][WARNING] - The trace Cosmos DB for current workspace/project is not ready yet, your traces might not be logged and stored properly.
 To enable it, please run `pf config set trace.destination=azureml://subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-or-project-name>`, prompt flow will help to get everything ready.
 
 Traceback (most recent call last):

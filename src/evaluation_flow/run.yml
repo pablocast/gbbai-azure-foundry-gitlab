@@ -7,4 +7,4 @@ column_mapping:
   question: ${data.query}
   context: ${data.context}
 resources:
-  instance_type: DDSv4
+  instance_type: Standard_DS2_v2

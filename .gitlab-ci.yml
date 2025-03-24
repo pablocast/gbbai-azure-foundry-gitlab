@@ -8,6 +8,7 @@ test-job1:
     - echo AZURE_RESOURCE_GROUP=$AZURE_RESOURCE_GROUP >> .env
     - echo AZURE_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID >> .env
     - echo AZURE_AML_WORKSPACE=$AZURE_AML_WORKSPACE >> .env
+    - printenv
     - python3 -m venv venv
     - . venv/bin/activate
     - pip install azure-identity azure-ai-projects promptflow azure-ai-evaluation promptflow-azure
