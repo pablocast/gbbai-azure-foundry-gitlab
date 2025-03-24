@@ -22,7 +22,7 @@ from azure.ai.projects.models import (
     ConnectionType,
 )
 from azure.ai.evaluation._model_configurations import AzureOpenAIModelConfiguration
-from app import create_rag_agent, run_agent_query
+from app import create_rag_agent, azure_enterprise_chat
 import logging
 
 def create_project_client():
@@ -50,7 +50,7 @@ def get_response(query: str) -> str:
         search_conn=search_conn,
     )
 
-    answer = run_agent_query(agent=agent, question=query)
+    answer = azure_enterprise_chat(agent, user_message=query, history=[])
     logging.info(f"Answer: {answer}")
     return dict(response=answer)
 
@@ -86,14 +86,6 @@ def create_synthetic_eval_file(file_path):
 
     return file_path
 
-
-def upload_eval_data(project_client, data_path):
-    uploaded_data_id, _ = project_client.upload_file(str(data_path))
-    print("✅ Uploaded JSONL to project. Data asset ID:", uploaded_data_id)
-
-    return uploaded_data_id
-
-
 def create_evaluation(project_client, uploaded_data_path):
 
     model_config = AzureOpenAIModelConfiguration(
@@ -104,9 +96,6 @@ def create_evaluation(project_client, uploaded_data_path):
 
     f1_score = F1ScoreEvaluator()
     relevance = RelevanceEvaluator(model_config)
-    violence = ViolenceEvaluator(
-        credential=DefaultAzureCredential(), azure_ai_project=project_client.scope
-    )
 
     evaluation = evaluate(
         target=get_response,
@@ -115,8 +104,7 @@ def create_evaluation(project_client, uploaded_data_path):
         data=uploaded_data_path,
         evaluators={
             "f1_score": f1_score,
-            "relevance": relevance,
-            "violence": violence,
+            "relevance": relevance
         },
         evaluator_config={
             "default": {
@@ -134,7 +122,6 @@ def main():
     eval_data_path = Path("./data/eval_data.jsonl")
     create_synthetic_eval_file(eval_data_path)
     project_client = create_project_client()
-    uploaded_data_id = upload_eval_data(project_client, eval_data_path)
     evaluation = create_evaluation(project_client, eval_data_path)
     print("✅ Evaluation object created.")
 

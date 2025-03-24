@@ -1,0 +1,4 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+entry: flow:azure_enterprise_chat
+environment:
+  python_requirements_txt: requirements.txt

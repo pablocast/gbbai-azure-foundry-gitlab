@@ -7,6 +7,8 @@ azure-ai-contentsafety                        # Azure content safety services
 azure-search-documents==11.6.0b4              # Azure Search Documents SDK
 azure-ai-evaluation[remote]                   # Azure AI model evaluation tools
 azure-ai-ml                                   # Azure Machine Learning SDK                
+promptflow[azure]
+promptflow-azure
 
 # Telemetry and Monitoring
 azure-monitor-opentelemetry                  # Azure Monitor OpenTelemetry integration

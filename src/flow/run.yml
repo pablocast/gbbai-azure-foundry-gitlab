@@ -1,0 +1,11 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
+flow: .
+data: ../../data/eval_data.jsonl
+column_mapping:
+  question: ${data.query}
+  chat_history: ${data.chat_history}
+environment_variables:
+  AZURE_OPENAI_GPT_MODEL_NAME: gpt-4o
+  PROJECT_CONNECTION_STRING: eastus.api.azureml.ms;06d043e2-5a2e-46bf-bf48-fffee525f377;rg-gitlab-foundry;project-y46hq5abdyglk
+resources:
+  compute: pfcompute

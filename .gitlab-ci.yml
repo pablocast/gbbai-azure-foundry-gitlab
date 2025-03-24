@@ -1,24 +1,16 @@
-default:
-  image: mcr.microsoft.com/azure-cli:latest
-
-auth:
-  script:
-    - az login --service-principal --username $AZURE_APP_ID --password $AZURE_PASSWORD --tenant $AZURE_TENANT
-
 test-job1:
   stage: test
   image: python:3.11-slim
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
+    - pip install azure-identity azure-ai-projects promptflow
   script:
     - echo "This job tests something"
     - echo "Installing Azure CLI extensions"
     - echo "Installing az ml extension..."
     - echo "Listing current directory"
     - ls
-    - echo "Installing ai foundry dependencies"
-    - pip install -r requirements.txt
-    - echo "Running AI Foundry evaluations"
-    - python src/evaluation.py
-  
+    - echo "Running evaluation"
+    - pf run create --flow scr/evaluation_flow/run.yml --stream
+   

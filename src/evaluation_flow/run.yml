@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
+flow: .
+data: ../../data/eval_data.jsonl
+column_mapping:
+  groundtruth: ${data.ground_truth}
+  answer: ${data.response}
+  question: ${data.query}
+  context: ${data.context}
+# define cloud resource
+environment_variables:
+  AZURE_OPENAI_GPT_MODEL_NAME: gpt-4o
+  AZURE_OPENAI_ENDPOINT: https://aiservices-y46hq5abdyglk.openai.azure.com/
+resources:
+  compute: pfcompute
