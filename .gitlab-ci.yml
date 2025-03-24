@@ -4,6 +4,7 @@ test-job1:
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
+    - echo AZURE_OPENAI_API_KEY= $AZURE_OPENAI_API_KEY >> .env
     - pip install azure-identity azure-ai-projects promptflow azure-ai-evaluation
   script:
     - echo "This job tests something"
