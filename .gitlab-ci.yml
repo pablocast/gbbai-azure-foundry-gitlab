@@ -1,17 +1,16 @@
 test-job1:
   stage: test
-  image: python:3.11-slim
+  image: mcr.microsoft.com/azure-cli
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
-    - echo AZURE_OPENAI_API_KEY= $AZURE_OPENAI_API_KEY >> .env
+    - apt-get update && apt-get install -y python3.11 python3.11-pip
     - pip install azure-identity azure-ai-projects promptflow azure-ai-evaluation
   script:
     - echo "This job tests something"
     - echo "Installing Azure CLI extensions"
     - echo "Installing az ml extension..."
     - echo "Listing current directory"
-    - echo "$AZURE_OPENAI_KEY"  
     - ls
     - echo "Running evaluation"
     - pf run create -f src/evaluation_flow/run.yml --stream

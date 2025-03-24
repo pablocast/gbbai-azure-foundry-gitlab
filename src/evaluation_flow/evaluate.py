@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
-        api_key=os.environ["AZURE_OPENAI_API_KEY"],
         azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
         api_version="2024-04-01-preview",
         azure_deployment=os.environ["AZURE_OPENAI_GPT_MODEL_NAME"],
