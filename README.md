@@ -47,9 +47,9 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
       ** Note: These can be found in the cli response from previous steps
  
    - Commit to gitlab and observe pipeline execution:
-
+      ![Connect](utils/media/gitlab_pipeline.png)
 
 
 4. **Delete the Resources**
-  
+  You can delete the infrastruture created before by using `azd down --purge`
 
