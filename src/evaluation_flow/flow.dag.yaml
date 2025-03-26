@@ -50,5 +50,5 @@ nodes:
     max_tokens: 256
     deployment_name: gpt-4o
     temperature: 0
-  connection: aiservices_connection
+  connection: aoai_connection_aoai
   api: chat

@@ -91,7 +91,7 @@ nodes:
     chat_history: ${inputs.chat_history}
     question: ${inputs.question}
   provider: AzureOpenAI
-  connection: aoai_connection
+  connection: aoai_connection_aoai
   api: chat
   module: promptflow.tools.aoai
   use_variants: false
