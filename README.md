@@ -2,6 +2,14 @@
 
 This directory exemplifies the integration between Gitlab and Azure AI Foundry
 
+## Prerequistes:
+   + [azd](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd), used to deploy all Azure resources and assets used in this sample.
+
+   + [az](https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli), used to create a service princiapl for the GitLab app
+
+   + [PowerShell Core pwsh](https://github.com/PowerShell/powershell/releases) if using Windows
+
+
 ## Instructions
 
 1. **Python Environment Setup**
