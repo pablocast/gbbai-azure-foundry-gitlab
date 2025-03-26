@@ -13,3 +13,7 @@ Add-Content -Path $envFilePath -Value ("AZURE_OPENAI_ENDPOINT=" + (azd env get-v
 Add-Content -Path $envFilePath -Value ("AZURE_OPENAI_GPT_MODEL_NAME=" + (azd env get-value AZURE_OPENAI_GPT_MODEL_NAME))
 Add-Content -Path $envFilePath -Value ("AZURE_OPENAI_EMBEDDING_MODEL_NAME=" + (azd env get-value AZURE_OPENAI_EMBEDDING_MODEL_NAME))
 Add-Content -Path $envFilePath -Value ("AZURE_OPENAI_EMBEDDING_MODEL_DIMENSIONS=" + (azd env get-value AZURE_OPENAI_EMBEDDING_MODEL_DIMENSIONS))
+Add-Conent  -Path $envFilePath - Value ("AZURE_SUBSCRIPTION_ID=" + (azd env get-value AZURE_SUBSCRIPTION_ID))
+Add-Content -Path $envFilePath -Value ("AZURE_RESOURCE_GROUP=" + (azd env get-value AZURE_RESOURCE_GROUP))
+Add-Content -Path $envFilePath -Value ("AZURE_AML_WORKSPACE=" + (azd env get-value AZURE_AML_WORKSPACE))
+
