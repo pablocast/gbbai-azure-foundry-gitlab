@@ -2,9 +2,6 @@ test-job1:
   stage: test
   image: mcr.microsoft.com/azure-cli
   before_script: 
-    - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
-    - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
-    - printenv
     - python3 -m venv venv
     - . venv/bin/activate
     - pip install azure-identity azure-ai-projects promptflow azure-ai-evaluation promptflow-azure
