@@ -25,11 +25,25 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
 
       The deployment creates multiple Azure resources and runs multiple jobs. It takes several minutes to complete. The deployment is complete when you get a command line notification stating "SUCCESS: Your up workflow to provision and deploy to Azure completed."
 
-3. **Indexing Documents**
-   - Run the  [indexing-aisearch notebook](notebooks/indexing-aisearch.ipynb) to create an index for the agent
 
+3. **Trigger an evaluation pipeline from GitLab**
+   - Create a service principal for the GitLab app using azure cli
+      ```bash
+      az ad sp create-for-rbac --name <your_service_principal_name> \
+                              --role Contributor \
+                              --scopes /subscriptions/<you_subscription_id>/resourceGroups/<your_resource_group>
+      ```
 
-4. **Trigger an evaluation pipeline from GitLab**
+   - Set the CI/CD Variables inside GitLab
+      - AZURE_SUBSCRIPTION_ID
+      - AZURE_RESOURCE_GROUP 
+      - ZURE_AML_WORKSPACE 
+      - AZURE_APP_ID 
+      - AZURE_PASSWORD 
+      - AZURE_TENANT
+ 
+   - Commit to gitlab and observe pipeline execution:
+
 
 
 4. **Delete the Resources**
