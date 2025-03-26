@@ -51,8 +51,9 @@ param embedingsDimension int
 // ------------------
 //    VARIABLES
 // ------------------
-
-var resourceSuffix = uniqueString(subscription().id, resourceGroup().id)
+// Capture the current UTC time for resource suffix calculation
+param deploymentTime string = utcNow('yyyyMMddHHmmss')
+var resourceSuffix = substring(uniqueString(subscription().id, resourceGroup().id, deploymentTime),0,4)
 
 // ------------------
 //    RESOURCES
@@ -255,7 +256,7 @@ resource project 'Microsoft.MachineLearningServices/workspaces@2024-07-01-previe
 
 
 resource connection 'Microsoft.MachineLearningServices/workspaces/connections@2024-04-01-preview' = {
-  name:  account.name
+  name:  'aoai_connection'
   parent: hub
   properties: {
     category: 'AIServices'
@@ -270,7 +271,7 @@ resource connection 'Microsoft.MachineLearningServices/workspaces/connections@20
 }
 
 resource hub_connection_azureai_search 'Microsoft.MachineLearningServices/workspaces/connections@2024-04-01-preview' = {
-  name: searchService.name
+  name: 'asearch_connection'
   parent: hub
   properties: {
     category: 'CognitiveSearch'
@@ -373,4 +374,6 @@ output AZURE_OPENAI_ENDPOINT string = 'https://${account.name}.openai.azure.com'
 output AZURE_OPENAI_GPT_MODEL_NAME string = modelDeployment[0].name
 output AZURE_OPENAI_EMBEDDING_MODEL_NAME string = modelDeployment[1].name
 output AZURE_OPENAI_EMBEDDING_MODEL_DIMENSIONS int = embedingsDimension
-
+output AZURE_SUBSCRIPTION_ID string = subscription().subscriptionId
+output AZURE_RESOURCE_GROUP string = resourceGroup().name
+output AZURE_AML_WORKSPACE string = project.name

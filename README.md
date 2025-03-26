@@ -49,6 +49,9 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
    - Commit to gitlab and observe pipeline execution:
       ![Connect](utils/media/gitlab_pipeline.png)
 
+      - The pipeline triggers a run and an evaluation flow inside the Azure AI Foundry project:
+      ![Connect](utils/media/ai_foundry_execution.png)
+
 
 4. **Delete the Resources**
   You can delete the infrastruture created before by using `azd down --purge`
