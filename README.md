@@ -50,7 +50,7 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
       ![Connect](utils/media/gitlab_pipeline.png)
 
       - The pipeline triggers a run and an evaluation flow inside the Azure AI Foundry project:
-      ![Connect](utils/media/ai_foundry_execution.png)
+      ![Connect](utils/media/ai_foundry_runs.png)
 
 
 4. **Delete the Resources**
