@@ -1,0 +1,25 @@
+{
+  "nodeLayouts": {
+    "inputs": {
+      "x": 262.83331298828125,
+      "y": 28.666664123535156,
+      "index": -1
+    },
+    "outputs": {
+      "x": 307.5,
+      "y": 444,
+      "index": -1
+    },
+    "run_function": {
+      "x": 210.6666259765625,
+      "y": 311.3333435058594,
+      "index": 0
+    },
+    "use_functions_with_chat_models": {
+      "x": 207.5,
+      "y": 170.66665649414062,
+      "index": 1
+    }
+  },
+  "orientation": "Vertical"
+}

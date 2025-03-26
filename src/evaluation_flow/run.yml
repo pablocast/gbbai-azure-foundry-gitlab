@@ -2,9 +2,9 @@ $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json
 flow: .
 data: ../../data/eval_data.jsonl
 column_mapping:
-  groundtruth: ${data.ground_truth}
-  answer: ${data.response}
   question: ${data.query}
-  context: ${data.context}
+  answer: ${run.outputs.answer}
+  chat_history: ${data.chat_history}
+  ground_truth: ${data.ground_truth}
 resources:
   instance_type: Standard_DS2_v2

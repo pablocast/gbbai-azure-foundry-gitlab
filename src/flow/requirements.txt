@@ -1,5 +1,2 @@
-# Azure SDK and AI Services
-azure-identity                                # Azure authentication and credentials management
-azure-ai-projects==1.0.0b7                    # Azure AI project management 
-azure-ai-evaluation       
 promptflow[azure]
+promptflow-tools

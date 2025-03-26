@@ -4,10 +4,6 @@ test-job1:
   before_script: 
     - echo AZURE_OPENAI_GPT_MODEL_NAME=$AZURE_OPENAI_GPT_MODEL_NAME >> .env         
     - echo AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT >> .env 
-    - echo AZURE_OPENAI_API_KEY=$AZURE_OPENAI_API_KEY >> .env
-    - echo AZURE_RESOURCE_GROUP=$AZURE_RESOURCE_GROUP >> .env
-    - echo AZURE_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID >> .env
-    - echo AZURE_AML_WORKSPACE=$AZURE_AML_WORKSPACE >> .env
     - printenv
     - python3 -m venv venv
     - . venv/bin/activate

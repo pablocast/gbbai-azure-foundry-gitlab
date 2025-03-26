@@ -1,0 +1,54 @@
+id: QnA_combined_eval
+name: QnA Combined Evaluation
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    default: []
+  question:
+    type: string
+  answer:
+    type: string
+  ground_truth:
+    type: string
+  metrics:
+    type: string
+    default: answer_similarity
+outputs:
+  gpt_similarity:
+    type: object
+    reference: ${concat_scores.output.gpt_similarity}
+nodes:
+- name: concat_scores
+  type: python
+  source:
+    type: code
+    path: similarity/concat_scores.py
+  inputs:
+    similarity_score: ${gpt_similarity_score.output}
+  use_variants: false
+- name: aggregate_variants_results
+  type: python
+  source:
+    type: code
+    path: similarity/aggregate_variants_results.py
+  inputs:
+    metrics: ${inputs.metrics}
+    results: ${concat_scores.output}
+  aggregation: true
+  use_variants: false
+- name: gpt_similarity_score
+  type: llm
+  source:
+    type: code
+    path: similarity/answer_similarity.jinja2
+  inputs:
+    ground_truth: ${inputs.ground_truth}
+    question: ${inputs.question}
+    answer: ${inputs.answer}
+    max_tokens: 256
+    deployment_name: gpt-4o
+    temperature: 0
+  connection: aiservices_connection
+  api: chat

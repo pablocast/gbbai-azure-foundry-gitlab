@@ -1,0 +1,35 @@
+{
+  "nodeLayouts": {
+    "inputs": {
+      "x": 365.33331298828125,
+      "y": 16,
+      "index": -1
+    },
+    "outputs": {
+      "x": 342.6666564941406,
+      "y": 611.3333587646484,
+      "index": -1
+    },
+    "concat_scores": {
+      "x": 415.50006103515625,
+      "y": 408.00001525878906,
+      "index": 0
+    },
+    "aggregate_variants_results": {
+      "x": 134.6666259765625,
+      "y": 187.3332977294922,
+      "index": 1
+    },
+    "gpt_similarity_score": {
+      "x": 416.16668701171875,
+      "y": 202,
+      "index": 2
+    },
+    "parse_similarity_score": {
+      "x": 430.8333740234375,
+      "y": 356,
+      "index": -1
+    }
+  },
+  "orientation": "Vertical"
+}
