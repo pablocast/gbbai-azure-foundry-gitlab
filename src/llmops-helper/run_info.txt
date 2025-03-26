@@ -1,137 +1,48 @@
-🎉 Created agent, ID: asst_8Ni6XMiIr6C7U5qijmTFw1Jj
-[32mUploading flow (0.01 MBs):   0%|          | 0/6994 [00:00<?, ?it/s][32mUploading flow (0.01 MBs):   3%|3         | 225/6994 [00:00<00:09, 735.53it/s][32mUploading flow (0.01 MBs):  64%|######4   | 4483/6994 [00:00<00:00, 6882.32it/s][32mUploading flow (0.01 MBs): 100%|##########| 6994/6994 [00:00<00:00, 9914.92it/s][32mUploading flow (0.01 MBs): 100%|##########| 6994/6994 [00:00<00:00, 8235.66it/s]
-[39m
-
-[2025-03-24 21:13:10 -0300][promptflow][WARNING] - You're using compute session, if it's first time you're using it, it may take a while to build session and you may see 'NotStarted' status for a while. 
-[2025-03-24 21:13:10 -0300][promptflow][WARNING] - The trace Cosmos DB for current workspace/project is not ready yet, your traces might not be logged and stored properly.
+[2025-03-26 16:17:30 -0300][promptflow][WARNING] - You're using compute session, if it's first time you're using it, it may take a while to build session and you may see 'NotStarted' status for a while. 
+[2025-03-26 16:17:30 -0300][promptflow][WARNING] - The trace Cosmos DB for current workspace/project is not ready yet, your traces might not be logged and stored properly.
 To enable it, please run `pf config set trace.destination=azureml://subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-or-project-name>`, prompt flow will help to get everything ready.
 
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     [flow_20250324_211255_266543] Receiving v2 bulk run request 2173277d-a1da-43b3-adf3-37fec1b5a781: {"flow_id": "flow_20250324_211255_266543", "flow_run_id": "flow_20250324_211255_266543", "flow_source": {"flow_source_type": 1, "flow_source_info": {"snapshot_id": "9c9dac9d-e50d-4173-9417-95b725a62d5d"}, "flow_dag_file": "flow.flex.yaml"}, "log_path": "https://storagey46hq5abdyglk.blob.core.windows.net/2e2bb8e6-b278-4833-a176-58e0078d1bcc-azureml/ExperimentRun/dcid.flow_20250324_211255_266543/logs/azureml/executionlogs.txt?sv=2019-07-07&sr=b&sig=**data_scrubbed**&skoid=459eba55-c3a3-4386-a061-17079b735195&sktid=16b3c013-d300-468d-ac64-7eda0820b6d3&skt=2025-03-24T19%3A00%3A38Z&ske=2025-03-26T19%3A10%3A38Z&sks=b&skv=2019-07-07&st=2025-03-25T00%3A03%3A13Z&se=2025-03-25T08%3A13%3A13Z&sp=rcw", "environment_variables": {"AZURE_OPENAI_GPT_MODEL_NAME": "${AZURE_OPENAI_GPT_MODEL_NAME}", "AZURE_OPENAI_ENDPOINT": "${AZURE_OPENAI_ENDPOINT}", "PROJECT_CONNECTION_STRING": "${PROJECT_CONNECTION_STRING}"}, "app_insights_instrumentation_key": "InstrumentationKey=**data_scrubbed**;IngestionEndpoint=https://eastus-6.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/", "flow_name": "flow_20250324_211255_266543", "batch_timeout_sec": 36000, "data_inputs": {"data": "azureml://datastores/workspaceblobstore/paths/LocalUpload/1a16023748a26291224eb1260c6483df/eval_data.jsonl"}, "inputs_mapping": {"question": "${data.query}", "chat_history": "${data.chat_history}"}, "azure_storage_setting": {"azure_storage_mode": 1, "storage_account_name": "storagey46hq5abdyglk", "blob_container_name": "2e2bb8e6-b278-4833-a176-58e0078d1bcc-azureml-blobstore", "flow_artifacts_root_path": "promptflow/PromptFlowArtifacts/flow_20250324_211255_266543", "blob_container_sas_token": "?sv=2019-07-07&sr=c&sig=**data_scrubbed**&skoid=459eba55-c3a3-4386-a061-17079b735195&sktid=16b3c013-d300-468d-ac64-7eda0820b6d3&skt=2025-03-25T00%3A13%3A13Z&ske=2025-04-01T00%3A13%3A13Z&sks=b&skv=2019-07-07&se=2025-04-01T00%3A13%3A13Z&sp=racwl", "output_datastore_name": "workspaceblobstore"}}
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Runtime version: 20250313.v2. PromptFlow version: 1.17.2
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     [Authenticated account] Scope: https://storage.azure.com/.default. Client ID: 18a66f5f-dbdf-4c17-9dd7-1634712a9cbe. Tenant ID: 16b3c013-d300-468d-ac64-7eda0820b6d3. User Principal Name: <unavailable>. Object ID (user): 8804e7e5-875e-4baa-bae9-306b736f45e3
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     [Authenticated account] Scope: https://management.azure.com/.default. Client ID: 18a66f5f-dbdf-4c17-9dd7-1634712a9cbe. Tenant ID: 16b3c013-d300-468d-ac64-7eda0820b6d3. User Principal Name: <unavailable>. Object ID (user): 8804e7e5-875e-4baa-bae9-306b736f45e3
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Updating flow_20250324_211255_266543 to Status.Preparing...
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Downloading snapshot to /mnt/host/service/app/40937/requests/flow_20250324_211255_266543
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Get snapshot sas url for 9c9dac9d-e50d-4173-9417-95b725a62d5d.
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Snapshot 9c9dac9d-e50d-4173-9417-95b725a62d5d contains 5 files.
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Download snapshot 9c9dac9d-e50d-4173-9417-95b725a62d5d completed.
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     Successfully download snapshot to /mnt/host/service/app/40937/requests/flow_20250324_211255_266543
-2025-03-25 00:13:14 +0000      85 promptflow-runtime INFO     About to execute a python flow.
-2025-03-25 00:13:16 +0000      85 promptflow-runtime INFO     Use spawn method to start child process.
-2025-03-25 00:13:16 +0000      85 promptflow-runtime INFO     Starting to check process 142 status for run flow_20250324_211255_266543
-2025-03-25 00:13:16 +0000      85 promptflow-runtime INFO     Start checking run status for run flow_20250324_211255_266543
-2025-03-25 00:13:23 +0000     142 promptflow-runtime INFO     [85--142] Start processing flowV2......
-2025-03-25 00:13:23 +0000     142 promptflow-runtime INFO     Runtime version: 20250313.v2. PromptFlow version: 1.17.2
-2025-03-25 00:13:23 +0000     142 promptflow-runtime INFO     Setting mlflow tracking uri...
-2025-03-25 00:13:23 +0000     142 promptflow-runtime INFO     Validating 'AzureML Data Scientist' user authentication...
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Successfully validated 'AzureML Data Scientist' user authentication.
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Using AzureMLRunStorageV2
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Setting mlflow tracking uri to 'azureml://eastus.api.azureml.ms/mlflow/v1.0/subscriptions/06d043e2-5a2e-46bf-bf48-fffee525f377/resourceGroups/rg-gitlab-foundry/providers/Microsoft.MachineLearningServices/workspaces/project-y46hq5abdyglk'
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Setting mlflow tracking uri to 'azureml://eastus.api.azureml.ms/mlflow/v1.0/subscriptions/06d043e2-5a2e-46bf-bf48-fffee525f377/resourceGroups/rg-gitlab-foundry/providers/Microsoft.MachineLearningServices/workspaces/project-y46hq5abdyglk'
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Creating unregistered output Asset for Run flow_20250324_211255_266543...
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Created debug_info Asset: azureml://locations/eastus/workspaces/2e2bb8e6-b278-4833-a176-58e0078d1bcc/data/azureml_flow_20250324_211255_266543_output_data_debug_info/versions/1
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Creating unregistered output Asset for Run flow_20250324_211255_266543...
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Created flow_outputs output Asset: azureml://locations/eastus/workspaces/2e2bb8e6-b278-4833-a176-58e0078d1bcc/data/azureml_flow_20250324_211255_266543_output_data_flow_outputs/versions/1
-2025-03-25 00:13:24 +0000     142 promptflow-runtime INFO     Patching flow_20250324_211255_266543...
-2025-03-25 00:13:27 +0000     142 promptflow-runtime INFO     Resolve data from url finished in 1.2805965300003663 seconds
-2025-03-25 00:13:27 +0000     142 promptflow-runtime INFO     Starting the aml run 'flow_20250324_211255_266543'...
-2025-03-25 00:13:28 +0000     142 execution.bulk     ERROR    Error occurred while executing batch run. Exception: Failed to load python module for flow.flex.yaml: (ValueError) Invalid connection string format
-2025-03-25 00:13:28 +0000     142 promptflow-runtime ERROR    Batch run failed. Exception: {
-  "message": "Failed to load python module for flow.flex.yaml: (ValueError) Invalid connection string format",
-  "messageFormat": "Failed to load python module for {entry_file}: {error_type_and_message}",
-  "messageParameters": {
-    "error_type_and_message": "(ValueError) Invalid connection string format",
-    "entry_file": "flow.flex.yaml"
-  },
-  "referenceCode": "Tool",
-  "code": "UserError",
-  "innerError": {
-    "code": "ToolValidationError",
-    "innerError": {
-      "code": "PythonParsingError",
-      "innerError": {
-        "code": "PythonLoadError",
-        "innerError": null
-      }
-    }
-  },
-  "additionalInfo": [
-    {
-      "type": "UserCodeStackTrace",
-      "info": {
-        "type": "ValueError",
-        "message": "Invalid connection string format",
-        "traceback": "Traceback (most recent call last):\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 680, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 850, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 228, in _call_with_frames_removed\n  File \"/mnt/host/service/app/40937/requests/flow_20250324_211255_266543/flow.py\", line 16, in <module>\n    project_client = AIProjectClient.from_connection_string(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/azure/ai/projects/_patch.py\", line 242, in from_connection_string\n    raise ValueError(\"Invalid connection string format\")\nValueError: Invalid connection string format\n",
-        "filename": "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/azure/ai/projects/_patch.py",
-        "lineno": 242,
-        "name": "from_connection_string"
-      }
-    }
-  ],
-  "debugInfo": {
-    "type": "PythonLoadError",
-    "message": "Failed to load python module for flow.flex.yaml: (ValueError) Invalid connection string format",
-    "stackTrace": "\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/runtime/runtime.py\", line 1146, in execute_bulk_run_request\n    batch_result: BatchResult = batch_engine.run(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/batch/_batch_engine.py\", line 271, in run\n    raise e\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/batch/_batch_engine.py\", line 209, in run\n    self._executor_proxy = executor_proxy or ProxyFactory().create_executor_proxy(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_proxy/_proxy_factory.py\", line 69, in create_executor_proxy\n    return async_run_allowing_running_loop(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_utils/async_utils.py\", line 96, in async_run_allowing_running_loop\n    return asyncio.run(_invoke_async_with_sigint_handler(async_func, *args, **kwargs))\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/asyncio/runners.py\", line 44, in run\n    return loop.run_until_complete(main)\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/asyncio/base_events.py\", line 647, in run_until_complete\n    return future.result()\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_utils/async_utils.py\", line 70, in _invoke_async_with_sigint_handler\n    return await task\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_proxy/_python_executor_proxy.py\", line 67, in create\n    flow_executor = FlowExecutor.create(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/flow_executor.py\", line 234, in create\n    return ScriptExecutor(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py\", line 87, in __init__\n    self._initialize_function()\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py\", line 493, in _initialize_function\n    func = self._parse_entry_func()\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py\", line 457, in _parse_entry_func\n    raise PythonLoadError(\n",
-    "innerException": {
-      "type": "ValueError",
-      "message": "Invalid connection string format",
-      "stackTrace": "Traceback (most recent call last):\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py\", line 454, in _parse_entry_func\n    module = importlib.import_module(module_name)\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/importlib/__init__.py\", line 127, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n  File \"<frozen importlib._bootstrap>\", line 1030, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 680, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 850, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 228, in _call_with_frames_removed\n  File \"/mnt/host/service/app/40937/requests/flow_20250324_211255_266543/flow.py\", line 16, in <module>\n    project_client = AIProjectClient.from_connection_string(\n  File \"/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/azure/ai/projects/_patch.py\", line 242, in from_connection_string\n    raise ValueError(\"Invalid connection string format\")\n",
-      "innerException": null
-    }
-  }
-}
 Traceback (most recent call last):
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py", line 454, in _parse_entry_func
-    module = importlib.import_module(module_name)
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/importlib/__init__.py", line 127, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
-  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
-  File "/mnt/host/service/app/40937/requests/flow_20250324_211255_266543/flow.py", line 16, in <module>
-    project_client = AIProjectClient.from_connection_string(
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/azure/ai/projects/_patch.py", line 242, in from_connection_string
-    raise ValueError("Invalid connection string format")
-ValueError: Invalid connection string format
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/runtime/runtime.py", line 1146, in execute_bulk_run_request
-    batch_result: BatchResult = batch_engine.run(
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/batch/_batch_engine.py", line 271, in run
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Scripts\pfazure.exe\__main__.py", line 7, in <module>
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 134, in main
+    entry(command_args)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 115, in entry
+    cli_exception_and_telemetry_handler(run_command, activity_name, custom_dimensions)(args)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_cli\_utils.py", line 276, in wrapper
     raise e
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/batch/_batch_engine.py", line 209, in run
-    self._executor_proxy = executor_proxy or ProxyFactory().create_executor_proxy(
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_proxy/_proxy_factory.py", line 69, in create_executor_proxy
-    return async_run_allowing_running_loop(
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_utils/async_utils.py", line 96, in async_run_allowing_running_loop
-    return asyncio.run(_invoke_async_with_sigint_handler(async_func, *args, **kwargs))
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/asyncio/runners.py", line 44, in run
-    return loop.run_until_complete(main)
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
-    return future.result()
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_utils/async_utils.py", line 70, in _invoke_async_with_sigint_handler
-    return await task
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/_proxy/_python_executor_proxy.py", line 67, in create
-    flow_executor = FlowExecutor.create(
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/flow_executor.py", line 234, in create
-    return ScriptExecutor(
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py", line 87, in __init__
-    self._initialize_function()
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py", line 493, in _initialize_function
-    func = self._parse_entry_func()
-  File "/azureml-envs/prompt-flow/runtime/lib/python3.9/site-packages/promptflow/executor/_script_executor.py", line 457, in _parse_entry_func
-    raise PythonLoadError(
-promptflow._core.tool_meta_generator.PythonLoadError: Failed to load python module for flow.flex.yaml: (ValueError) Invalid connection string format
-2025-03-25 00:13:28 +0000     142 promptflow-runtime WARNING  [flow_20250324_211255_266543] Run failed. Execution stackTrace: 
-2025-03-25 00:13:28 +0000     142 promptflow-runtime INFO     Ending the aml run 'flow_20250324_211255_266543' with status 'Failed'...
-======= Run Summary =======
-Run name: "flow_20250324_211255_266543"
-Run status: "Failed"
-Start time: "2025-03-25 00:13:28.231028+00:00"
-Duration: "0:00:00.677437"
-Run url: "https://ai.azure.com/projectflows/trace/run/flow_20250324_211255_266543/details?wsid=/subscriptions/06d043e2-5a2e-46bf-bf48-fffee525f377/resourcegroups/rg-gitlab-foundry/providers/Microsoft.MachineLearningServices/workspaces/project-y46hq5abdyglk"pfazure.run.create failed with InvalidRunStatusError: Failed to load python module for flow.flex.yaml: (ValueError) Invalid connection string format
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_cli\_utils.py", line 264, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 60, in run_command
+    raise ex
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\entry.py", line 48, in run_command
+    dispatch_run_commands(args)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_cli\_run.py", line 410, in dispatch_run_commands
+    create_run(
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_cli\_pf\_run.py", line 659, in create_run
+    run = create_func(run=run_obj, stream=stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_sdk\_telemetry\activity.py", line 265, in wrapper
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\operations\_run_operations.py", line 187, in create_or_update
+    self.stream(run=run.name)
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\_sdk\_telemetry\activity.py", line 265, in wrapper
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\operations\_run_operations.py", line 641, in stream
+    available_logs = self._get_log(flow_run_id=run.name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\operations\_run_operations.py", line 543, in _get_log
+    return self._service_caller.caller.bulk_runs.get_flow_run_log_content(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\azure\core\tracing\decorator.py", line 116, in wrapper_use_tracer
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pablocastao\OneDrive - Microsoft\Work\Clients\Serasa\gbbai-multiagents-sk\.venv\Lib\site-packages\promptflow\azure\_restclient\flow\operations\_bulk_runs_operations.py", line 973, in get_flow_run_log_content
+    raise HttpResponseError(response=response, model=error)
+azure.core.exceptions.HttpResponseError: (UserError) Value cannot be null. (Parameter 'bytes')
+Code: UserError
+Message: Value cannot be null. (Parameter 'bytes')

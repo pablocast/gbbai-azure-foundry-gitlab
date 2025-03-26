@@ -148,6 +148,12 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-04-01' = {
       }
       keySource: 'Microsoft.Storage'
     }
+    networkAcls: {
+      bypass: 'AzureServices'
+      virtualNetworkRules: []
+      ipRules: []
+      defaultAction: 'Allow'
+  }
     supportsHttpsTrafficOnly: true
   }
   tags: tagValues
