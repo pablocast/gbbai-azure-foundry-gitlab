@@ -35,12 +35,16 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
       ```
 
    - Set the CI/CD Variables inside GitLab
-      - AZURE_SUBSCRIPTION_ID
-      - AZURE_RESOURCE_GROUP 
-      - ZURE_AML_WORKSPACE 
-      - AZURE_APP_ID 
-      - AZURE_PASSWORD 
-      - AZURE_TENANT
+      - AZURE_SUBSCRIPTION_ID : <your_azure_subscription_id> 
+      - AZURE_RESOURCE_GROUP: <your_azure_resource_group> 
+      - AZURE_AML_WORKSPACE: <your_azure_ai_foundry_project_name> 
+      - AZURE_APP_ID: <your_azure_app_id> **
+      - AZURE_PASSWORD: <your_azure_app_password> **
+      - AZURE_TENANT: <your_azure_tenant_id> **
+
+      ![Connect](utils/media/gitlab_variables.png)
+      
+      ** Note: These can be found in the cli response from previous steps
  
    - Commit to gitlab and observe pipeline execution:
 
